@@ -1,0 +1,37 @@
+doctype html
+html
+    head
+        title knowledge base
+        link(rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="/css/style.css")    
+    body
+      .container
+      ul
+        li
+          a(href="/") Home
+        if user  
+          li
+            a(href="/articles/add") Add Article
+      ul.navbar-right
+        if user
+          li 
+            a(href="/users/logout") Logout
+        else
+          li
+            a(href="/users/register") Register  
+          li
+            a(href="/users/login") Login    
+            
+      .container
+        != messages('message', locals)
+        if errors
+          each error, i in errors
+            div(class="alert alert-danger") #{error.msg}
+        block content
+        br
+        hr
+        footer
+          p copyright &copy; 2018
+      script(src='/bower_components/jquery/dist/jquery.js')    
+      script(src='/bower_components/bootstrap/dist/js/bootstrap.js')    
+      script(src="/js/main.js")
